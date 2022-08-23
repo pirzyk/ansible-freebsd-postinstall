@@ -18,10 +18,6 @@
   register: tmp_loader_vars
   changed_when: false
 
-- name: "sysctl: Create empty list fp_sysctl_noloader_conf"
-  ansible.builtin.set_fact:
-    fp_sysctl_noloader_conf: []
-
 - name: "sysctl: [WARNING] Does not report changes in check mode because of empty tmp_loader_vars"
   ansible.builtin.debug:
     msg: "[WARNING] Next task does not report changes in check mode because of empty tmp_loader_vars"
@@ -29,25 +25,10 @@
     - ansible_check_mode|bool
     - fp_sysctl_debug|bool
 
-- name: "sysctl: Add items to fp_sysctl_noloader_conf"
-  ansible.builtin.set_fact:
-    fp_sysctl_noloader_conf: "{{ fp_sysctl_noloader_conf + [item] }}"
-  loop: "{{ fp_sysctl_conf }}"
-  when:
-    - tmp_loader_vars.stdout_lines|default([])|length > 0
-    - item.name not in tmp_loader_vars.stdout_lines
-
-- name: "sysctl: Debug fp_sysctl_noloader_conf"
+- name: "sysctl: Debug fp_sysctl_conf"
   ansible.builtin.debug:
-    var: fp_sysctl_noloader_conf|to_yaml
+    var: fp_sysctl_conf|to_yaml
   when: fp_sysctl_debug|bool
-
-- name: "sysctl: [WARNING] Does not report changes in check mode because of empty fp_sysctl_noloader_conf"
-  ansible.builtin.debug:
-    msg: "[WARNING] Next task does not report changes in check mode because of empty fp_sysctl_noloader_conf"
-  when:
-    - ansible_check_mode|bool
-    - fp_sysctl_debug|bool
 
 - name: "sysctl: Configure {{ fp_sysctl_conf_file }}"
   ansible.posix.sysctl:
@@ -58,7 +39,7 @@
     reload: "{{ item.reload|default(omit) }}"
     sysctl_set: "{{ item.set|default(omit) }}"
     ignoreerrors: "{{ fp_sysctl_ignoreerrors|default(omit) }}"
-  loop: "{{ fp_sysctl_noloader_conf }}"
+  loop: "{{ fp_sysctl_conf }}"
 
 
 - name: "sysctl: [WARNING] Tuneables present in fp_sysctl_conf but fp_loader not enabled"
@@ -68,7 +49,7 @@
     - not ansible_check_mode|bool
     - fp_sysctl_debug|bool
     - fp_sysctl_warning_loader_needed|bool
-    - fp_sysctl_conf|length > fp_sysctl_noloader_conf|length
+    - fp_sysctl_conf|length > fp_sysctl_conf|length
     - not fp_loader|bool
 
 # NOTES
