@@ -1,0 +1,27 @@
+---
+
+- name: "rcvars: Enable /etc/rc.conf items"
+  ansible.builtin.lineinfile:
+    dest: /etc/rc.conf
+    regexp: '^\s*{{ item }}\s*=(.*)$'
+    line: '{{ item }}="YES"'
+    backup: "{{ fp_backup }}"
+  loop: "{{ fp_rcvars_enable }}"
+
+- name: "rcvars: Disable /etc/rc.conf items"
+  ansible.builtin.lineinfile:
+    dest: /etc/rc.conf
+    regexp: '^\s*{{ item }}\s*=(.*)$'
+    line: '{{ item }}="NO"'
+  loop: "{{ fp_rcvars_disable }}"
+
+- name: "rcvars: Configure /etc/rc.conf"
+  ansible.builtin.lineinfile:
+    dest: /etc/rc.conf
+    regexp: '^\s*{{ item.key }}\s*=(.*)$'
+    line: '{{ item.key }}="{{ item.value }}"'
+    backup: "{{ fp_wpasupplicant_backup }}"
+  loop: "{{ fp_rcvars_conf }}"
+
+# EOF
+...
