@@ -268,4 +268,9 @@
   when: fp_syslogng | bool
   tags: fp_syslogng
 
+- name: Import rcvars.yml
+  ansible.builtin.import_tasks: rcvars.yml
+  when: fp_rcvars|bool
+  tags: fp_rcvars
+
 # EOF

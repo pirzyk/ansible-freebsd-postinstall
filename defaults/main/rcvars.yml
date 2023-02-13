@@ -1,0 +1,10 @@
+---
+fp_rcvars: False
+#fp_rcvars_enable:
+#  - fsck_enable
+#  - kern_securelevel_enable
+#fp_rcvars_disable:
+#  - background_fsck_enable
+#  - background_fsck
+#fp_rcvars_conf:
+#  - { key: kern_securelevel, value: 1 }
