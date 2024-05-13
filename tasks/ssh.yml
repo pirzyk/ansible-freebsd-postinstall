@@ -20,4 +20,14 @@
     mode: "{{ fp_ssh_conf_mode }}"
     backup: "{{ fp_backup }}"
 
+- name: "ssh: Configure {{ fp_ssh_known_hosts_file }}"
+  ansible.builtin.template:
+    src: "{{ fp_ssh_known_hosts_template }}"
+    dest: "{{ fp_ssh_known_hosts_file }}"
+    owner: "{{ fp_ssh_conf_owner }}"
+    group: "{{ fp_ssh_conf_group }}"
+    mode: "{{ fp_ssh_conf_mode }}"
+    backup: "{{ fp_backup }}"
+  tags: fp_ssh_config
+
 # EOF
