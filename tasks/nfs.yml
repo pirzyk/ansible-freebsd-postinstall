@@ -86,7 +86,7 @@
     label: "{{ oi.label }}"
   tags: fp_nfs_enable
 
-- name: "nfsd: Disable services"
+- name: "nfs: Disable services"
   ansible.builtin.include_tasks:
     file: fn/rcconf-item.yml
   loop:
