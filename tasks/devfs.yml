@@ -21,35 +21,35 @@
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
 
-- name: Test rcvar for system module
-  tags: fp_devfs_rcvar
-  block:
-
-    - name: "Devfs: Shell: /etc/rc.d/devfs rcvar | grep ^devfs*"
-      register: result
-      ansible.builtin.shell: # noqa: risky-shell-pipe
-        cmd: >
-          /etc/rc.d/devfs rcvar | grep ^devfs*
-      changed_when: false
-      check_mode: false
-
-    - name: "Devfs: Debug result fp_devfs_debug={{ fp_devfs_debug }}"
-      when: fp_devfs_debug | bool
-      ansible.builtin.debug:
-        var: result.stdout_lines
-
-  rescue:
-
-    - name: "Devfs: ERROR no rcvar"
-      ansible.builtin.debug:
-        msg: >
-          [ERR] unable to determine rcvar. End of play.
-          Variable rcvar is missing in the file /etc/rc.d/devfs
-          Put the following line into the file /etc/rc.d/devfs
-          rcvar="devfs_load_rulesets"
-
-    - name: "Devfs: Block: End of play."
-      ansible.builtin.meta: end_play
+#- name: Test rcvar for system module
+#  tags: fp_devfs_rcvar
+#  block:
+#
+#    - name: "Devfs: Shell: /etc/rc.d/devfs rcvar | grep ^devfs*"
+#      register: result
+#      ansible.builtin.shell: # noqa: risky-shell-pipe
+#        cmd: >
+#          /etc/rc.d/devfs rcvar | grep ^devfs*
+#      changed_when: false
+#      check_mode: false
+#
+#    - name: "Devfs: Debug result fp_devfs_debug={{ fp_devfs_debug }}"
+#      when: fp_devfs_debug | bool
+#      ansible.builtin.debug:
+#        var: result.stdout_lines
+#
+#  rescue:
+#
+#    - name: "Devfs: ERROR no rcvar"
+#      ansible.builtin.debug:
+#        msg: >
+#          [ERR] unable to determine rcvar. End of play.
+#          Variable rcvar is missing in the file /etc/rc.d/devfs
+#          Put the following line into the file /etc/rc.d/devfs
+#          rcvar="devfs_load_rulesets"
+#
+#    - name: "Devfs: Block: End of play."
+#      ansible.builtin.meta: end_play
 
 - name: Enable/Disable devfs in /etc/rc.conf
   tags: fp_devfs_rcconf
@@ -111,12 +111,12 @@
         backup: "{{ fp_backup }}"
       loop: "{{ fp_devfs_rules }}"
 
-- name: "Devfs: Service devfs state {{ state }}"
-  tags: fp_devfs_service
-  vars:
-    state: "{{ fp_devfs_enabled | bool | ternary('started', 'stopped') }}"
-  ansible.builtin.service:
-    name: devfs
-    state: "{{ state }}"
+#- name: "Devfs: Service devfs state {{ state }}"
+#  tags: fp_devfs_service
+#  vars:
+#    state: "{{ fp_devfs_enabled | bool | ternary('started', 'stopped') }}"
+#  ansible.builtin.service:
+#    name: devfs
+#    state: "{{ state }}"
 
 # EOF
