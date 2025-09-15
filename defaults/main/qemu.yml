@@ -5,6 +5,7 @@ fp_qemu_enabled: false
 # mutually exclusive
 fp_qemu_install: false # list of packages: qemu
 fp_qemu_user_static_install: false # list of packages: qemu_user_static
+fp_qemu_user_static_enable: false
 
 # set to the name of the installed package
 fp_qemu_rcvar: qemu_user_static
