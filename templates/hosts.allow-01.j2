@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+# Ansible managed
 {% for item in fp_inetd_hosts_allow_conf %}
 {% set v=item.values()|list %}
 {% if v|length == 2 %}

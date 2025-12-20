@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+# Ansible managed
 {% for item in fp_ssh_known_hosts %}
 {{ item.name }}{% if item.aliases is defined %},{{ item.aliases | join(',') }}{% endif %} {{ item.key_type }} {{ item.hash }}{{ item.comment | default('') }}
 {% endfor %}

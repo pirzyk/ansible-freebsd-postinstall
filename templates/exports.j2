@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+# Ansible managed
 {% for item in fp_nfsd_exports %}
 {{ item.mount_point }} {{ item.flags }}
 {% endfor %}

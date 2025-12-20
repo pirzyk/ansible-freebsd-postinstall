@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+# Ansible managed
 {% for item  in fp_ssh_conf %}
 Host {{ item.host }}
 {% for conf  in item.conf %}
