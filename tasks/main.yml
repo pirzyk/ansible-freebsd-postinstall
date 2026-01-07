@@ -4,7 +4,7 @@
 - name: Import vars.yml
   ansible.builtin.import_tasks: vars.yml
   when: fp_vars | bool
-  tags: [fp_vars, always]
+  tags: fp_vars
 
 - name: Import debug.yml
   ansible.builtin.import_tasks: debug.yml
@@ -14,7 +14,6 @@
 - name: Import sanity.yml
   ansible.builtin.import_tasks: sanity.yml
   when: fp_sanity | bool
-  tags: always
 
 - name: Import cloud-providers.yml
   ansible.builtin.import_tasks: cloud-providers.yml
