@@ -15,6 +15,6 @@
   community.general.sysrc:
     path: "{{ _path }}"
     name: update_motd
-    value: "{{ fp_motd_update | bool | ternary('YES', 'NO') }}"
+    value: "{{ fp_motd_update | bool | ternary('NO', 'YES') }}"
 
 # EOF
