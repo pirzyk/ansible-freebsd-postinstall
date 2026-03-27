@@ -57,18 +57,11 @@
     - fp_nfsd_disable
   block:
 
-    - name: "Nfsd: Get services status."
-      register: out
-      vbotka.freebsd.service:
-        script: "{{ item }}"
-        command: status
+    - name: "Nfsd: Enable services"
+      ansible.builtin.service:
+        name: "{{ item }}"
+        enabled: "{{ fp_nfsd_enable }}"
       loop: "{{ fp_nfsd_services }}"
-
-    - name: "Nfsd: Set services status."
-      vars:
-        _query: '[].[item, status]'
-      ansible.builtin.set_fact:
-        fp_nfsd_services_status: "{{ dict(out.results | community.general.json_query(_query)) }}"
 
     - name: "Nfsd: Debug services status fp_nfsd_debug={{ fp_nfsd_debug }}"
       when: fp_nfsd_debug | bool

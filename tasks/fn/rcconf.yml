@@ -79,8 +79,8 @@
 
     - name: "Rcconf: Service {{ _service ~ ' ' ~ _command ~ ' ' ~ _service_task_var ~ '=' ~ _service_task_val }}"
       when: _service_task_val
-      vbotka.freebsd.service:
-        script: "{{ _service }}"
-        command: "{{ _command }}"
+      ansible.builtin.service:
+        name: "{{ _service }}"
+        state: "{{ _command }}ed"
 
 # EOF

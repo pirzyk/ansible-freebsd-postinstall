@@ -3,28 +3,28 @@
 # Handlers for statd
 - name: Start statd
   listen: start statd
-  vbotka.freebsd.service:
-    script: statd
-    command: start
+  ansible.builtin.service:
+    name: statd
+    state: started
 
 - name: Stop statd
   listen: stop statd
-  vbotka.freebsd.service:
-    script: statd
-    command: stop
+  ansible.builtin.service:
+    name: statd
+    state: stopped
 
 - name: Restart statd
   listen: restart statd
   when: fp_statd_enable | bool
-  vbotka.freebsd.service:
-    script: statd
-    command: restart
+  ansible.builtin.service:
+    name: statd
+    state: restarted
 
 - name: Reload statd
   listen: reload statd
   when: fp_statd_enable | bool
-  vbotka.freebsd.service:
-    script: statd
-    command: reload
+  ansible.builtin.service:
+    name: statd
+    state: reloaded
 
 # EOF

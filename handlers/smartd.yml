@@ -3,28 +3,28 @@
 # Handlers for smartd
 - name: Start smartd
   listen: start smartd
-  vbotka.freebsd.service:
-    script: smartd
-    command: start
+  ansible.builtin.service:
+    name: smartd
+    state: started
 
 - name: Stop smartd
   listen: stop smartd
-  vbotka.freebsd.service:
-    script: smartd
-    command: stop
+  ansible.builtin.service:
+    name: smartd
+    state: stopped
 
 - name: Restart smartd
   listen: restart smartd
   when: fp_smartd_enable | bool
-  vbotka.freebsd.service:
-    script: smartd
-    command: restart
+  ansible.builtin.service:
+    name: smartd
+    state: restarted
 
 - name: Reload smartd
   listen: reload smartd
   when: fp_smartd_enable | bool
-  vbotka.freebsd.service:
-    script: smartd
-    command: reload
+  ansible.builtin.service:
+    name: smartd
+    state: reloaded
 
 # EOF

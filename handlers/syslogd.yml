@@ -3,28 +3,28 @@
 # Handlers for syslogd
 - name: Start syslogd
   listen: start syslogd
-  vbotka.freebsd.service:
-    script: syslogd
-    command: start
+  ansible.builtin.service:
+    name: syslogd
+    state: started
 
 - name: Stop syslogd
   listen: stop syslogd
-  vbotka.freebsd.service:
-    script: syslogd
-    command: stop
+  ansible.builtin.service:
+    name: syslogd
+    state: stopped
 
 - name: Restart syslogd
   listen: restart syslogd
   when: fp_syslogd_enable | bool
-  vbotka.freebsd.service:
-    script: syslogd
-    command: restart
+  ansible.builtin.service:
+    name: syslogd
+    state: restarted
 
 - name: Reload syslogd
   listen: reload syslogd
   when: fp_syslogd_enable | bool
-  vbotka.freebsd.service:
-    script: syslogd
-    command: reload
+  ansible.builtin.service:
+    name: syslogd
+    state: reloaded
 
 # EOF

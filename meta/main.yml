@@ -40,4 +40,4 @@ collections:
   - ansible.posix
   - ansible.utils
   - community.general
-  - vbotka.freebsd
+  #- vbotka.freebsd

@@ -3,28 +3,28 @@
 # Handlers for nfsclient
 - name: Start nfsclient
   listen: start nfsclient
-  vbotka.freebsd.service:
-    script: nfsclient
-    command: start
+  ansible.builtin.service:
+    name: nfsclient
+    state: started
 
 - name: Stop nfsclient
   listen: stop nfsclient
-  vbotka.freebsd.service:
-    script: nfsclient
-    command: stop
+  ansible.builtin.service:
+    name: nfsclient
+    state: stopped
 
 - name: Restart nfsclient
   listen: restart nfsclient
   when: fp_nfs_enable | bool
-  vbotka.freebsd.service:
-    script: nfsclient
-    command: restart
+  ansible.builtin.service:
+    name: nfsclient
+    state: restarted
 
 - name: Reload nfsclient
   listen: reload nfsclient
   when: fp_nfs_enable | bool
-  vbotka.freebsd.service:
-    script: nfsclient
-    command: reload
+  ansible.builtin.service:
+    name: nfsclient
+    state: reloaded
 
 # EOF

@@ -3,28 +3,28 @@
 # Handlers for qemu
 - name: Start qemu
   listen: start qemu
-  vbotka.freebsd.service:
-    script: qemu
-    command: start
+  ansible.builtin.service:
+    name: qemu
+    state: started
 
 - name: Stop qemu
   listen: stop qemu
-  vbotka.freebsd.service:
-    script: qemu
-    command: stop
+  ansible.builtin.service:
+    name: qemu
+    state: stopped
 
 - name: Restart qemu
   listen: restart qemu
   when: fp_qemu_enable | bool
-  vbotka.freebsd.service:
-    script: qemu
-    command: restart
+  ansible.builtin.service:
+    name: qemu
+    state: restarted
 
 - name: Reload qemu
   listen: reload qemu
   when: fp_qemu_enable | bool
-  vbotka.freebsd.service:
-    script: qemu
-    command: reload
+  ansible.builtin.service:
+    name: qemu
+    state: reloaded
 
 # EOF

@@ -3,28 +3,28 @@
 # Handlers for inetd
 - name: Start inetd
   listen: start inetd
-  vbotka.freebsd.service:
-    script: inetd
-    command: start
+  ansible.builtin.service:
+    name: inetd
+    state: started
 
 - name: Stop inetd
   listen: stop inetd
-  vbotka.freebsd.service:
-    script: inetd
-    command: stop
+  ansible.builtin.service:
+    name: inetd
+    state: stopped
 
 - name: Restart inetd
   listen: restart inetd
   when: fp_inetd_enable | bool
-  vbotka.freebsd.service:
-    script: inetd
-    command: restart
+  ansible.builtin.service:
+    name: inetd
+    state: restarted
 
 - name: Reload inetd
   listen: reload inetd
   when: fp_inetd_enable | bool
-  vbotka.freebsd.service:
-    script: inetd
-    command: reload
+  ansible.builtin.service:
+    name: inetd
+    state: reloaded
 
 # EOF
