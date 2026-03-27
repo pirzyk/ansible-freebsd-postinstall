@@ -3,28 +3,28 @@
 # Handlers for qemu_user_static
 - name: Start qemu_user_static
   listen: start qemu_user_static
-  vbotka.freebsd.service:
-    script: qemu_user_static
-    command: start
+  ansible.builtin.service:
+    name: qemu_user_static
+    state: started
 
 - name: Stop qemu_user_static
   listen: stop qemu_user_static
-  vbotka.freebsd.service:
-    script: qemu_user_static
-    command: stop
+  ansible.builtin.service:
+    name: qemu_user_static
+    state: stopped
 
 - name: Restart qemu_user_static
   listen: restart qemu_user_static
   when: fp_qemu_user_static_enable | bool
-  vbotka.freebsd.service:
-    script: qemu_user_static
-    command: restart
+  ansible.builtin.service:
+    name: qemu_user_static
+    state: restarted
 
 - name: Reload qemu_user_static
   listen: reload qemu_user_static
   when: fp_qemu_user_static_enable | bool
-  vbotka.freebsd.service:
-    script: qemu_user_static
-    command: reload
+  ansible.builtin.service:
+    name: qemu_user_static
+    state: reloaded
 
 # EOF

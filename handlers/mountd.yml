@@ -3,28 +3,28 @@
 # Handlers for mountd
 - name: Start mountd
   listen: start mountd
-  vbotka.freebsd.service:
-    script: mountd
-    command: start
+  ansible.builtin.service:
+    name: mountd
+    state: started
 
 - name: Stop mountd
   listen: stop mountd
-  vbotka.freebsd.service:
-    script: mountd
-    command: stop
+  ansible.builtin.service:
+    name: mountd
+    state: stopped
 
 - name: Restart mountd
   listen: restart mountd
   when: fp_mountd_enable | bool
-  vbotka.freebsd.service:
-    script: mountd
-    command: restart
+  ansible.builtin.service:
+    name: mountd
+    state: restarted
 
 - name: Reload mountd
   listen: reload mountd
   when: fp_mountd_enable | bool
-  vbotka.freebsd.service:
-    script: mountd
-    command: reload
+  ansible.builtin.service:
+    name: mountd
+    state: reloaded
 
 # EOF

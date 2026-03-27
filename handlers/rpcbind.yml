@@ -3,28 +3,28 @@
 # Handlers for rpcbind
 - name: Start rpcbind
   listen: start rpcbind
-  vbotka.freebsd.service:
-    script: rpcbind
-    command: start
+  ansible.builtin.service:
+    name: rpcbind
+    state: started
 
 - name: Stop rpcbind
   listen: stop rpcbind
-  vbotka.freebsd.service:
-    script: rpcbind
-    command: stop
+  ansible.builtin.service:
+    name: rpcbind
+    state: stopped
 
 - name: Restart rpcbind
   listen: restart rpcbind
   when: fp_rpcbind_enable | bool
-  vbotka.freebsd.service:
-    script: rpcbind
-    command: restart
+  ansible.builtin.service:
+    name: rpcbind
+    state: restarted
 
 - name: Reload rpcbind
   listen: reload rpcbind
   when: fp_rpcbind_enable | bool
-  vbotka.freebsd.service:
-    script: rpcbind
-    command: reload
+  ansible.builtin.service:
+    name: rpcbind
+    state: reloaded
 
 # EOF

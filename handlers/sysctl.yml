@@ -3,8 +3,8 @@
 # Handlers for sysctl
 - name: Reload sysctl
   listen: reload sysctl
-  vbotka.freebsd.service:
-    script: sysctl
-    command: reload
+  ansible.builtin.service:
+    name: sysctl
+    state: reloaded
 
 # EOF

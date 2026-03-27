@@ -3,28 +3,28 @@
 # Handlers for ntpdate
 - name: Start ntpdate
   listen: start ntpdate
-  vbotka.freebsd.service:
-    script: ntpdate
-    command: start
+  ansible.builtin.service:
+    name: ntpdate
+    state: started
 
 - name: Stop ntpdate
   listen: stop ntpdate
-  vbotka.freebsd.service:
-    script: ntpdate
-    command: stop
+  ansible.builtin.service:
+    name: ntpdate
+    state: stopped
 
 - name: Restart ntpdate
   listen: restart ntpdate
   when: fp_ntpdate_enable | bool
-  vbotka.freebsd.service:
-    script: ntpdate
-    command: restart
+  ansible.builtin.service:
+    name: ntpdate
+    state: restarted
 
 - name: Reload ntpdate
   listen: reload ntpdate
   when: fp_ntpdate_enable | bool
-  vbotka.freebsd.service:
-    script: ntpdate
-    command: reload
+  ansible.builtin.service:
+    name: ntpdate
+    state: reloaded
 
 # EOF

@@ -3,28 +3,28 @@
 # Handlers for apcupsd
 - name: Start apcupsd
   listen: start apcupsd
-  vbotka.freebsd.service:
-    script: apcupsd
-    command: start
+  ansible.builtin.service:
+    name: apcupsd
+    state: started
 
 - name: Stop apcupsd
   listen: stop apcupsd
-  vbotka.freebsd.service:
-    script: apcupsd
-    command: stop
+  ansible.builtin.service:
+    name: apcupsd
+    state: stopped
 
 - name: Restart apcupsd
   listen: restart apcupsd
   when: fp_apcupsd_enable | bool
-  vbotka.freebsd.service:
-    script: apcupsd
-    command: restart
+  ansible.builtin.service:
+    name: apcupsd
+    state: restarted
 
 - name: Reload apcupsd
   listen: reload apcupsd
   when: fp_apcupsd_enable | bool
-  vbotka.freebsd.service:
-    script: apcupsd
-    command: reload
+  ansible.builtin.service:
+    name: apcupsd
+    state: reloaded
 
 # EOF

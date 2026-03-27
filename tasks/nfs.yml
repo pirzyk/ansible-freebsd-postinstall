@@ -34,7 +34,7 @@
 
     - name: "Nfs: Get services status."
       register: out
-      vbotka.freebsd.service:
+      ansible.builtin.service:
         script: "{{ item }}"
         command: status
       loop: "{{ fp_nfs_services }}"

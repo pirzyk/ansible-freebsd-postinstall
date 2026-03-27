@@ -3,28 +3,28 @@
 # Handlers for devd
 - name: Start devd
   listen: start devd
-  vbotka.freebsd.service:
-    script: devd
-    command: start
+  ansible.builtin.service:
+    name: devd
+    state: started
 
 - name: Stop devd
   listen: stop devd
-  vbotka.freebsd.service:
-    script: devd
-    command: stop
+  ansible.builtin.service:
+    name: devd
+    state: stopped
 
 - name: Restart devd
   listen: restart devd
   when: fp_devd_enable | bool
-  vbotka.freebsd.service:
-    script: devd
-    command: restart
+  ansible.builtin.service:
+    name: devd
+    state: restarted
 
 - name: Reload devd
   listen: reload devd
   when: fp_devd_enable | bool
-  vbotka.freebsd.service:
-    script: devd
-    command: reload
+  ansible.builtin.service:
+    name: devd
+    state: reloaded
 
 # EOF

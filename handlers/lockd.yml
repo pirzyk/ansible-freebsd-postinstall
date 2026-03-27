@@ -3,28 +3,28 @@
 # Handlers for lockd
 - name: Start lockd
   listen: start lockd
-  vbotka.freebsd.service:
-    script: lockd
-    command: start
+  ansible.builtin.service:
+    name: lockd
+    state: started
 
 - name: Stop lockd
   listen: stop lockd
-  vbotka.freebsd.service:
-    script: lockd
-    command: stop
+  ansible.builtin.service:
+    name: lockd
+    state: stopped
 
 - name: Restart lockd
   listen: restart lockd
   when: fp_lockd_enable | bool
-  vbotka.freebsd.service:
-    script: lockd
-    command: restart
+  ansible.builtin.service:
+    name: lockd
+    state: restarted
 
 - name: Reload lockd
   listen: reload lockd
   when: fp_lockd_enable | bool
-  vbotka.freebsd.service:
-    script: lockd
-    command: reload
+  ansible.builtin.service:
+    name: lockd
+    state: reloaded
 
 # EOF

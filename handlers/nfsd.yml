@@ -3,28 +3,28 @@
 # Handlers for nfsd
 - name: Start nfsd
   listen: start nfsd
-  vbotka.freebsd.service:
-    script: nfsd
-    command: start
+  ansible.builtin.service:
+    name: nfsd
+    state: started
 
 - name: Stop nfsd
   listen: stop nfsd
-  vbotka.freebsd.service:
-    script: nfsd
-    command: stop
+  ansible.builtin.service:
+    name: nfsd
+    state: stopped
 
 - name: Restart nfsd
   listen: restart nfsd
   when: fp_nfsd_enable | bool
-  vbotka.freebsd.service:
-    script: nfsd
-    command: restart
+  ansible.builtin.service:
+    name: nfsd
+    state: restarted
 
 - name: Reload nfsd
   listen: reload nfsd
   when: fp_nfsd_enable | bool
-  vbotka.freebsd.service:
-    script: nfsd
-    command: reload
+  ansible.builtin.service:
+    name: nfsd
+    state: reloaded
 
 # EOF

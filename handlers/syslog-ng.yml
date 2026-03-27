@@ -3,28 +3,28 @@
 # Handlers for syslog-ng
 - name: Start syslog-ng
   listen: start syslog-ng
-  vbotka.freebsd.service:
-    script: syslog-ng
-    command: start
+  ansible.builtin.service:
+    name: syslog-ng
+    state: started
 
 - name: Stop syslog-ng
   listen: stop syslog-ng
-  vbotka.freebsd.service:
-    script: syslog-ng
-    command: stop
+  ansible.builtin.service:
+    name: syslog-ng
+    state: stopped
 
 - name: Restart syslog-ng
   listen: restart syslog-ng
   when: fp_syslogng_enable | bool
-  vbotka.freebsd.service:
-    script: syslog-ng
-    command: restart
+  ansible.builtin.service:
+    name: syslog-ng
+    state: restarted
 
 - name: Reload syslog-ng
   listen: reload syslog-ng
   when: fp_syslogng_enable | bool
-  vbotka.freebsd.service:
-    script: syslog-ng
-    command: reload
+  ansible.builtin.service:
+    name: syslog-ng
+    state: reloaded
 
 # EOF

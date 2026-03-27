@@ -3,28 +3,28 @@
 # Handlers for snmpd
 - name: Start snmpd
   listen: start snmpd
-  vbotka.freebsd.service:
-    script: snmpd
-    command: start
+  ansible.builtin.service:
+    name: snmpd
+    state: started
 
 - name: Stop snmpd
   listen: stop snmpd
-  vbotka.freebsd.service:
-    script: snmpd
-    command: stop
+  ansible.builtin.service:
+    name: snmpd
+    state: stopped
 
 - name: Restart snmpd
   listen: restart snmpd
   when: fp_snmpd_enable | bool
-  vbotka.freebsd.service:
-    script: snmpd
-    command: restart
+  ansible.builtin.service:
+    name: snmpd
+    state: restarted
 
 - name: Reload snmpd
   listen: reload snmpd
   when: fp_snmpd_enable | bool
-  vbotka.freebsd.service:
-    script: snmpd
-    command: reload
+  ansible.builtin.service:
+    name: snmpd
+    state: reloaded
 
 # EOF

@@ -3,28 +3,28 @@
 # Handlers for devfs
 - name: Start devfs
   listen: start devfs
-  vbotka.freebsd.service:
-    script: devfs
-    command: start
+  ansible.builtin.service:
+    name: devfs
+    state: started
 
 - name: Stop devfs
   listen: stop devfs
-  vbotka.freebsd.service:
-    script: devfs
-    command: stop
+  ansible.builtin.service:
+    name: devfs
+    state: stopped
 
 - name: Restart devfs
   listen: restart devfs
   when: fp_devfs_enable | bool
-  vbotka.freebsd.service:
-    script: devfs
-    command: restart
+  ansible.builtin.service:
+    name: devfs
+    state: restarted
 
 - name: Reload devfs
   listen: reload devfs
   when: fp_devfs_enable | bool
-  vbotka.freebsd.service:
-    script: devfs
-    command: reload
+  ansible.builtin.service:
+    name: devfs
+    state: reloaded
 
 # EOF
